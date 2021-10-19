@@ -20,7 +20,7 @@ namespace DragonBallApi.Domain.Entity
         public string Gender { get; set; }
         public string ImagePerfil { get; set; }
         public DateTime BirthDate { get; set; }
-        public DateTime DeathTime { get; set; }
+        public DateTime DeathDate { get; set; }
         public int OriginPlanetId { get; set; }
 
         public virtual OriginPlanet OriginPlanet { get; set; }
