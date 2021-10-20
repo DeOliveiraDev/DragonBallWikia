@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,13 +8,13 @@ using System.Threading.Tasks;
 namespace DragonBallApi.Domain.Entity
 {
     [Table("Character")]
-    public class Character
+    public class Characters
     {
-        public Character()
+        public Characters()
         {
             CharacterSpecies = new HashSet<CharacterSpecies>();
         }
-
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public bool Status { get; set; }
@@ -25,6 +26,5 @@ namespace DragonBallApi.Domain.Entity
 
         public virtual OriginPlanet OriginPlanet { get; set; }
         public virtual ICollection<CharacterSpecies> CharacterSpecies { get; set; }
-
     }
 }
