@@ -1,7 +1,9 @@
+using DragonBallApi.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +34,13 @@ namespace DragonBallApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DragonBallApi", Version = "v1" });
             });
+
+
+
+            string connectionString = "Server=.\\SQLExpress;Database=DragonBallDB;Trusted_Connection=True;";
+            // se não estiver usando o SQLExpress tente
+            // Server=localhost;Database=PrimeiraAPI;Trusted_Connection=True;
+            services.AddDbContext<DragonBallContext>(options => options.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

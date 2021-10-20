@@ -8,7 +8,7 @@ namespace DragonBallApi.Domain.DTO
 {
     public class CharactersResponse
     {
-        public CharactersResponse(Character character) {
+        public CharactersResponse(Characters character) {
             Id = character.Id;
             Name = character.Name;
             Status = character.Status;

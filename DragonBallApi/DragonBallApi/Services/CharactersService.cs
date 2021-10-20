@@ -19,10 +19,13 @@ namespace DragonBallApi.Services
 
         public async Task<ServiceResponse<List<CharactersResponse>>> SearchAllCharacters(int index, int quantity)
         {
+            /*
             var charactersSearch = await _charactersRepository.SearchCharacters(index, quantity);
             var charactersSearchResult = charactersSearch.Select(x => new CharactersResponse(x)).ToList();
 
-            return new ServiceResponse<List<CharactersResponse>>(charactersSearchResult);
+            return new ServiceResponse<List<CharactersResponse>>();
+            */
+            return null;
         }
     }
 }
