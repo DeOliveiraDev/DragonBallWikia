@@ -7,5 +7,6 @@ namespace DragonBallApi.DAL.Repository
 {
     public class CharactersRepository
     {
+
     }
 }
