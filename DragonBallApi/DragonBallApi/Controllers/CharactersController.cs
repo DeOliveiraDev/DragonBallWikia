@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DragonBallApi.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,26 @@ namespace DragonBallApi.Controllers
     [ApiController]
     public class CharactersController : ControllerBase
     {
+        public readonly CharactersService _charactersService;
+
+        public CharactersController(CharactersService charactersService)
+        {
+            _charactersService = charactersService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get(int index, int quantity)
+        {
+            var result = await _charactersService.SearchAllCharacters(index, quantity);
+
+            if (result.Success)
+            {
+                return Ok(result.ObjectReturn);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
     }
 }
