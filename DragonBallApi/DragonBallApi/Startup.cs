@@ -50,6 +50,8 @@ namespace DragonBallApi
             // se n�o estiver usando o SQLExpress tente
             // Server=localhost;Database=PrimeiraAPI;Trusted_Connection=True;
             services.AddDbContext<DragonBallContext>(options => options.UseSqlServer(connectionString));
+            services.AddScoped<CoverImageRepository>();
+            services.AddTransient<CoverImageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
