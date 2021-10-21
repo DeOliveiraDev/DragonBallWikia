@@ -24,11 +24,11 @@ namespace DragonBallApi.DAL
             modelBuilder.Entity<Characters>(entity =>
             {
                 entity.Property(x => x.Name).IsUnicode(false);
-                entity.Property(x => x.Status);
+                entity.Property(x => x.Status).IsUnicode(false);
                 entity.Property(e => e.Gender).IsUnicode(false);
                 entity.Property(e => e.ImagePerfil).IsUnicode(false);
-                entity.Property(e => e.BirthDate);
-                entity.Property(e => e.DeathDate);
+                entity.Property(e => e.BirthDate).IsUnicode(false);
+                entity.Property(e => e.DeathDate).IsUnicode(false);
                 entity.HasOne(e => e.OriginPlanet)
                 .WithMany(y => y.Characters)
                 .HasForeignKey(e => e.OriginPlanetId)
