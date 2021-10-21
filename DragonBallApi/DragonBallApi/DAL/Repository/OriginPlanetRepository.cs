@@ -18,13 +18,13 @@ namespace DragonBallApi.DAL.Repository
 
         public async Task<OriginPlanet> SearchById(int id)
         {
-            return await _dragonBallContex.OriginPlanet.FindAsync(id);
+            return await _dragonBallContex.OriginPlanet.Include(x => x.Characters).Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
         public async Task<List<OriginPlanet>> Search (int currentPage,  int numberOfPage)
         {
             int amtPagePrevious = currentPage * numberOfPage;
-            return await _dragonBallContex.OriginPlanet.Skip(amtPagePrevious).Take(numberOfPage).ToListAsync();
+            return await _dragonBallContex.OriginPlanet.Skip(amtPagePrevious).Take(numberOfPage).Include(x => x.Characters).ToListAsync();
         } 
 
         public async Task<OriginPlanet> Register(OriginPlanet newModel)
