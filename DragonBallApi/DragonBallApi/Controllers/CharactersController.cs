@@ -1,4 +1,5 @@
-﻿using DragonBallApi.Services;
+﻿using DragonBallApi.Domain.DTO;
+using DragonBallApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,15 +23,88 @@ namespace DragonBallApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(int index, int quantity)
         {
-            var result = await _charactersService.SearchAllCharacters(index, quantity);
-
-            if (result.Success)
+            if (ModelState.IsValid)
             {
-                return Ok(result.ObjectReturn);
+                var result = await _charactersService.SearchAllCharacters(index, quantity);
+
+                if (result.Success)
+                {
+                    return Ok(result.ObjectReturn);
+                }
+                else
+                {
+                    return BadRequest(result);
+                }
             }
             else
             {
-                return BadRequest(result);
+                return BadRequest(ModelState);
+            }
+            
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            if(ModelState.IsValid)
+            {
+                var result = await _charactersService.SearchCharactersById(id);
+
+                if (result.Success)
+                {
+                    return Ok(result.ObjectReturn);
+                }
+                else
+                {
+                    return BadRequest(result);
+                }
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+            
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CharactersCreateRequest postModel)
+        {if (ModelState.IsValid)
+            {
+                var result = await _charactersService.PostCharacters(postModel);
+                if (result.Success)
+                {
+                    return Ok(result.ObjectReturn);
+                }
+                else
+                {
+                    return BadRequest(result);
+                }
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] CharactersUpdateRequest putModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _charactersService.UpdateCharactersIfo(id, putModel);
+
+                if(result.Success)
+                {
+                    return Ok(result.ObjectReturn);
+                }
+                else
+                {
+                    return BadRequest(result);
+                }
+            }
+            else
+            {
+                return BadRequest(ModelState);
             }
         }
     }
