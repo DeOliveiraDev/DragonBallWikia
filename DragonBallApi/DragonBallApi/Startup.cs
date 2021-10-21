@@ -1,4 +1,6 @@
 using DragonBallApi.DAL;
+using DragonBallApi.DAL.Repository;
+using DragonBallApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -41,6 +43,8 @@ namespace DragonBallApi
             // se não estiver usando o SQLExpress tente
             // Server=localhost;Database=PrimeiraAPI;Trusted_Connection=True;
             services.AddDbContext<DragonBallContext>(options => options.UseSqlServer(connectionString));
+            services.AddScoped<CoverImageRepository>();
+            services.AddTransient<CoverImageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
