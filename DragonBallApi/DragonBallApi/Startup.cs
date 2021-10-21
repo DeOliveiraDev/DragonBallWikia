@@ -1,4 +1,5 @@
 using DragonBallApi.DAL;
+using DragonBallApi.DAL.EFCore;
 using DragonBallApi.DAL.Repository;
 using DragonBallApi.Services;
 using Microsoft.AspNetCore.Builder;
@@ -36,7 +37,8 @@ namespace DragonBallApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DragonBallApi", Version = "v1" });
             });
-
+            services.AddTransient<CharactersService>();
+            services.AddScoped<CharactersRepository>();
 
             services.AddScoped<SpecieRepository>();
             ;
@@ -45,7 +47,7 @@ namespace DragonBallApi
             
 
             string connectionString = "Server=.\\SQLExpress;Database=DragonBallDB;Trusted_Connection=True;";
-            // se não estiver usando o SQLExpress tente
+            // se nï¿½o estiver usando o SQLExpress tente
             // Server=localhost;Database=PrimeiraAPI;Trusted_Connection=True;
             services.AddDbContext<DragonBallContext>(options => options.UseSqlServer(connectionString));
         }
