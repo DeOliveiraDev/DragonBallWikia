@@ -1,4 +1,6 @@
 using DragonBallApi.DAL;
+using DragonBallApi.DAL.Repository;
+using DragonBallApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,6 +38,11 @@ namespace DragonBallApi
             });
 
 
+            services.AddScoped<SpecieRepository>();
+            ;
+
+            services.AddTransient<SpecieService>();
+            
 
             string connectionString = "Server=.\\SQLExpress;Database=DragonBallDB;Trusted_Connection=True;";
             // se não estiver usando o SQLExpress tente
