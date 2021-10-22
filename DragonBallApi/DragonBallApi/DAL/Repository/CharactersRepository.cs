@@ -20,7 +20,11 @@ namespace DragonBallApi.DAL.Repository
         public async Task<List<Characters>> SearchCharacters(int currentPage, int numberOfPage)
         {
             int skipPages = currentPage * numberOfPage;
+<<<<<<< HEAD
             return await _dragonBallContext.Characters.Skip(skipPages).Take(numberOfPage).Include(x => x.OriginPlanet).Include(x => x.CharacterSpecies).ToListAsync();
+=======
+            return await _dragonBallContext.Characters.Skip(skipPages).Take(numberOfPage).Include(x => x.OriginPlanet).Include(x => x.CharacterSpecies).ThenInclude(x => x.Species).ToListAsync();
+>>>>>>> main
         }
 
         public async Task<Characters> SearchCharacterById(int id)

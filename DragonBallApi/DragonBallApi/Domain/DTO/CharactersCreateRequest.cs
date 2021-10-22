@@ -30,5 +30,10 @@ namespace DragonBallApi.Domain.DTO
         [Required]
         public int OriginPlanetId { get; set; }
 
+        [Required]
+        public List<int> SpecieId { get; set; }
+
+
+
     }
 }

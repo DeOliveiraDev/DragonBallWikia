@@ -11,11 +11,11 @@ namespace DragonBallApi.Services
 {
     public class SpecieService
     {
-        private readonly SpecieRepository _dragonBallContext;
+        private readonly SpecieRepository _specieRepository;
 
-        public SpecieService(SpecieRepository dragonBallContext)
+        public SpecieService(SpecieRepository specieRepository)
         {
-            _dragonBallContext = dragonBallContext;
+            _specieRepository = specieRepository;
         }
 
 		public async Task<ServiceResponse<List<SpecieResponse>>> Search(int pageIndex, int qtdPage)
@@ -31,7 +31,7 @@ namespace DragonBallApi.Services
 			}
 
 
-			var list = await _dragonBallContext.Search(pageIndex, qtdPage);
+			var list = await _specieRepository.Search(pageIndex, qtdPage);
 			var listConvert = list.Select(x => new SpecieResponse(x)).ToList();
 
 			return new ServiceResponse<List<SpecieResponse>>(listConvert);
@@ -39,7 +39,7 @@ namespace DragonBallApi.Services
 
 		public async Task<ServiceResponse<SpecieResponse>> SearchById(int id)
 		{
-			var specie = await _dragonBallContext.SearchById(id);
+			var specie = await _specieRepository.SearchById(id);
 			if (specie != null)
 			{
 				return new ServiceResponse<SpecieResponse>(new SpecieResponse(specie));
@@ -56,7 +56,7 @@ namespace DragonBallApi.Services
 				ImageUrl = newSpecie.ImageUrl
 			};
 
-			await _dragonBallContext.Register(model);
+			await _specieRepository.Register(model);
 
 			return new ServiceResponse<SpecieResponse>(new SpecieResponse(model));
 		}
@@ -69,7 +69,7 @@ namespace DragonBallApi.Services
 				ImageUrl = model.ImageUrl
 			};
 
-			var result =  _dragonBallContext.Update(id, newModel);
+			var result = _specieRepository.Update(id, newModel);
 
 			return new ServiceResponse<Species>(newModel);
 		}

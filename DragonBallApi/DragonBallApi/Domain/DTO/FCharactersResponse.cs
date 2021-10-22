@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DragonBallApi.Domain.DTO
 {
-    public class CharactersResponse
+    public class FCharactersResponse
     {
-        public CharactersResponse(Characters character) {
+        public FCharactersResponse(Characters character)
+        {
             Id = character.Id;
             Name = character.Name;
             Status = character.Status;
@@ -18,18 +19,10 @@ namespace DragonBallApi.Domain.DTO
             DeathDate = character.DeathDate;
             OriginPlanetId = character.OriginPlanetId;
 
-<<<<<<< HEAD
-            if (character.CharacterSpecies != null && character.CharacterSpecies.Any())
-            {
-                CharacterSpecies = new List<CharacterSpecies>();
-                CharacterSpecies.AddRange(character.CharacterSpecies.Select(x => new CharacterSpecies()));
-            }
-=======
-            CharacterSpecies = new List<CharacterSpeciesResponse>();
-            CharacterSpecies.AddRange(character.CharacterSpecies.Select(x => new CharacterSpeciesResponse(x)));
+            
 
->>>>>>> main
         }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
@@ -39,12 +32,5 @@ namespace DragonBallApi.Domain.DTO
         public string DeathDate { get; set; }
 
         public int OriginPlanetId { get; set; }
-
-<<<<<<< HEAD
-        public List<CharacterSpecies> CharacterSpecies { get; set; }
-
-=======
-        public List<CharacterSpeciesResponse> CharacterSpecies { get; set; }
->>>>>>> main
     }
 }

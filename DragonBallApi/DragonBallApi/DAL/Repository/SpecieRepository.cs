@@ -21,7 +21,7 @@ namespace DragonBallApi.DAL.Repository
         {
             int qtaPaginasAnteriores = page * qnt;
 
-            return await _dragonBallContext.Species.Skip(qtaPaginasAnteriores).Take(page).ToListAsync();
+            return await _dragonBallContext.Species.Skip(qtaPaginasAnteriores).Take(qnt).Include(x => x.CharacterSpecies).ThenInclude( x => x.Characters).ToListAsync();
         }
 
         public async Task<Species> SearchById(int id)

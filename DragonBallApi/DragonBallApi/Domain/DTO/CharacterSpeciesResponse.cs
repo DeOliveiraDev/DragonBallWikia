@@ -8,6 +8,7 @@ namespace DragonBallApi.Domain.DTO
 {
     public class CharacterSpeciesResponse
     {
+<<<<<<< HEAD
         public CharacterSpeciesResponse(CharacterSpecies characterSpecies)
         {
             Id = characterSpecies.Id;
@@ -17,5 +18,14 @@ namespace DragonBallApi.Domain.DTO
         public int Id { get; set; }
         public int CharacterId { get; set; }
         public int SpecieId { get; set; }
+=======
+        public CharacterSpeciesResponse(CharacterSpecies model)
+        {
+            Species = new FSpecieResponse(model.Species);
+        }
+
+
+        public virtual FSpecieResponse Species { get; set; }
+>>>>>>> main
     }
 }
