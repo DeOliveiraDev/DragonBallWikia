@@ -15,6 +15,8 @@ namespace DragonBallApi.Domain.Entity
             CharacterSpecies = new HashSet<CharacterSpecies>();
         }
 
+
+
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }

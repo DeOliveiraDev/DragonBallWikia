@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DragonBallApi.DAL.Migrations
 {
@@ -55,11 +54,11 @@ namespace DragonBallApi.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
-                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    Status = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     Gender = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     ImagePerfil = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DeathDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BirthDate = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
+                    DeathDate = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     OriginPlanetId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
