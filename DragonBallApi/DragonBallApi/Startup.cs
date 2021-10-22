@@ -50,6 +50,9 @@ namespace DragonBallApi
             // se n�o estiver usando o SQLExpress tente
             // Server=localhost;Database=PrimeiraAPI;Trusted_Connection=True;
             services.AddDbContext<DragonBallContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddScoped<OriginPlanetRepository>();
+            services.AddTransient<OriginPlanetService>();
             services.AddScoped<CoverImageRepository>();
             services.AddTransient<CoverImageService>();
         }
