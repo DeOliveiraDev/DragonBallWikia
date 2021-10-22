@@ -19,8 +19,6 @@ namespace DragonBallApi.DAL.Repository
 
         public async Task<List<Species>> Search(int page, int qnt)
         {
-
-            
             int qtaPaginasAnteriores = page * qnt;
 
             return await _dragonBallContext.Species.Skip(qtaPaginasAnteriores).Take(page).ToListAsync();

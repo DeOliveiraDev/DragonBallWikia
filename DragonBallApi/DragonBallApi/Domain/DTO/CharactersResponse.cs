@@ -17,6 +17,12 @@ namespace DragonBallApi.Domain.DTO
             BirthDate = character.BirthDate;
             DeathDate = character.DeathDate;
             OriginPlanetId = character.OriginPlanetId;
+
+            if (character.CharacterSpecies != null && character.CharacterSpecies.Any())
+            {
+                CharacterSpecies = new List<CharacterSpecies>();
+                CharacterSpecies.AddRange(character.CharacterSpecies.Select(x => new CharacterSpecies()));
+            }
         }
         public int Id { get; set; }
         public string Name { get; set; }
@@ -27,5 +33,8 @@ namespace DragonBallApi.Domain.DTO
         public string DeathDate { get; set; }
 
         public int OriginPlanetId { get; set; }
+
+        public List<CharacterSpecies> CharacterSpecies { get; set; }
+
     }
 }
