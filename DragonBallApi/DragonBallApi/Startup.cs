@@ -51,7 +51,9 @@ namespace DragonBallApi
             services.AddDbContext<DragonBallContext>(options => options.UseSqlServer(connectionString));
 
             services.AddScoped<OriginPlanetRepository>();
+            services.AddScoped<CharacterSpeciesRepository>();
             services.AddTransient<OriginPlanetService>();
+            services.AddTransient<CharacterSpeciesService>();
             services.AddScoped<CoverImageRepository>();
             services.AddTransient<CoverImageService>();
         }
