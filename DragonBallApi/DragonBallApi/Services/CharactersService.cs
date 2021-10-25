@@ -45,7 +45,7 @@ namespace DragonBallApi.Services
             return new ServiceResponse<CharactersResponse>(new CharactersResponse(characterSearchResult));
         }
 
-        public async Task<ServiceResponse<CharactersResponse>> PostCharacters(CharactersCreateRequest PostModel)
+        public async Task<ServiceResponse<FCharactersResponse>> PostCharacters(CharactersCreateRequest PostModel)
         {
             var model = new Characters
             {
@@ -60,9 +60,9 @@ namespace DragonBallApi.Services
 
             var result = await _iRepository.SaveCharacters(model);
 
-            _characterSpecieService.Register(result.Id, PostModel.SpecieId);
+            await _characterSpecieService.Register(result.Id, PostModel.SpecieId);
 
-            return new ServiceResponse<CharactersResponse>(new CharactersResponse(model));
+            return new ServiceResponse<FCharactersResponse>(new FCharactersResponse(model));
         }
 
         public async Task<ServiceResponse<CharactersResponse>> UpdateCharactersIfo(int id, CharactersUpdateRequest putModel)
