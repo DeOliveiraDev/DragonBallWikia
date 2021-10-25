@@ -15,11 +15,13 @@ namespace DragonBallApi.Services
     {
         public readonly DragonBallContext _dragonBallContext;
         public readonly CharactersRepository _iRepository;
+        public readonly CharacterSpeciesService _characterSpecieService;
 
-        public CharactersService(DragonBallContext dragonBallContext, CharactersRepository iRepository)
+        public CharactersService(DragonBallContext dragonBallContext, CharactersRepository iRepository, CharacterSpeciesService characterSpecieService)
         {
             _iRepository = iRepository;
             _dragonBallContext = dragonBallContext;
+            _characterSpecieService = characterSpecieService;
         }
 
 
@@ -56,7 +58,9 @@ namespace DragonBallApi.Services
                 OriginPlanetId = PostModel.OriginPlanetId
             };
 
-            await _iRepository.SaveCharacters(model);
+            var result = await _iRepository.SaveCharacters(model);
+
+            _characterSpecieService.Register(result.Id, PostModel.SpecieId);
 
             return new ServiceResponse<CharactersResponse>(new CharactersResponse(model));
         }
